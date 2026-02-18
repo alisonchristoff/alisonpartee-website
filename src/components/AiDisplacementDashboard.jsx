@@ -128,8 +128,8 @@ const forecasts = {
     ],
   },
   aggressive: {
-    label: "Frontier AI Labs",
-    methodology: "Capability-first analysis. Projects from observed scaling laws and benchmark performance, not historical labor patterns.",
+    label: "AI Lab Leadership",
+    methodology: "Editorial synthesis — not a published forecast. Derived from public statements by Anthropic, OpenAI, Google DeepMind, and Meta AI leadership, and AI benchmark trajectories documented in the Stanford HAI AI Index 2025. Does not account for regulatory, adoption, or economic constraints.",
     headline: "AI surpasses humans at most cognitive tasks",
     pctAutomated: 60,
     color: T.aggressive,
@@ -650,11 +650,20 @@ export default function Dashboard() {
               </div>
               <p style={{
                 fontFamily: "'Source Sans 3', sans-serif", fontSize: 15,
-                lineHeight: 1.6, color: T.inkMuted, maxWidth: 560, margin: "0 0 14px",
+                lineHeight: 1.6, color: T.inkMuted, maxWidth: 560, margin: "0 0 8px",
               }}>
                 Anthropic, OpenAI, Google DeepMind, and Meta AI leadership all project AI
                 will reach or exceed human-level performance on most cognitive tasks within
                 years, based on observed capability scaling. Their timeline is not decades.
+              </p>
+              <p style={{
+                fontFamily: "'Overpass Mono', monospace", fontSize: 11,
+                lineHeight: 1.6, color: T.inkLight, maxWidth: 560, margin: "0 0 14px",
+                borderLeft: `3px solid ${T.border}`, paddingLeft: 10,
+              }}>
+                Editorial note: this scenario is a synthesis of public statements and benchmark
+                data, not a published forecast from a named institution. Sources are cited in
+                the methodology section below.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {scenario.caps.map((c, i) => (
@@ -712,7 +721,7 @@ export default function Dashboard() {
                 strokeWidth={2.5} dot={{ r: 3, fill: T.conservative }} />
               <Line type="monotone" dataKey="mod" name="Goldman / McKinsey"
                 stroke={T.moderate} strokeWidth={2.5} dot={{ r: 3, fill: T.moderate }} />
-              <Line type="monotone" dataKey="agg" name="Frontier AI Labs"
+              <Line type="monotone" dataKey="agg" name="AI Lab Leadership"
                 stroke={T.aggressive} strokeWidth={2.5} dot={{ r: 3, fill: T.aggressive }} />
             </LineChart>
           </ResponsiveContainer>
@@ -720,7 +729,7 @@ export default function Dashboard() {
             {[
               { c: T.conservative, l: "BLS", sub: "Peak: -1.4%" },
               { c: T.moderate, l: "Goldman / McKinsey", sub: "Peak: -15%" },
-              { c: T.aggressive, l: "Frontier AI", sub: "Peak: -38%" },
+              { c: T.aggressive, l: "AI Lab Leadership", sub: "Peak: -38%" },
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
                 <div style={{ width: 16, height: 3, background: item.c, borderRadius: 1 }} />
@@ -768,8 +777,8 @@ export default function Dashboard() {
               They are at the center of it.
             </p>
             <p style={{ margin: 0, color: T.ink }}>
-              Across every forecast -- from the BLS's gentle -1.4% to the frontier
-              labs' -38% peak disruption -- one finding is consistent: the dividing line
+              Across every forecast -- from the BLS's gentle -1.4% to the AI lab
+              leadership synthesis's -38% peak disruption -- one finding is consistent: the dividing line
               between who thrives and who is displaced is the capacity to learn faster
               than the tools improve. That is no longer a soft skill. It is the primary one.
             </p>
@@ -802,8 +811,10 @@ export default function Dashboard() {
             <strong style={{ color: T.inkMuted }}>Forecasts:</strong> BLS Employment
             Projections 2023-2033. Goldman Sachs "Generative AI and the Future of Work"
             (2023, updated Aug 2025). McKinsey Global Institute (2023). WEF Future of Jobs
-            2025. Frontier scenario from public statements by Anthropic CEO Dario Amodei and
-            Stanford HAI AI Index Report 2025.
+            2025. "AI Lab Leadership" scenario is an editorial synthesis — not a published
+            forecast — derived from public statements by Anthropic CEO Dario Amodei, OpenAI,
+            Google DeepMind, and Meta AI leadership, combined with benchmark trajectories
+            from Stanford HAI AI Index Report 2025 (hai.stanford.edu/ai-index/2025).
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Divergence chart:</strong> Illustrative,
             not predictive. Represents estimated proportion of knowledge-worker roles facing
