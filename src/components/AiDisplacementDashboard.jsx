@@ -254,7 +254,7 @@ export default function Dashboard() {
           <Mono bold color={T.inkLight} size={10} style={{ letterSpacing: "0.15em", textTransform: "uppercase" }}>
             Data Investigation
           </Mono>
-          <Mono color={T.inkLight} size={10}>Alison &middot; 2025</Mono>
+          <Mono color={T.inkLight} size={10}>Alison &middot; Feb 17, 2026</Mono>
         </div>
       </header>
 
@@ -809,7 +809,7 @@ export default function Dashboard() {
             not predictive. Represents estimated proportion of knowledge-worker roles facing
             significant task disruption under each framework's assumptions.
             <br/><br/>
-            Built by Alison &middot; 2025
+            Built by Alison &middot; Feb 17, 2026
           </div>
         </div>
       </footer>

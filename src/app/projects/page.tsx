@@ -19,6 +19,7 @@ const projects = [
     href: "/projects/ai-displacement",
     tag: "Data Investigation · Interactive",
     title: "What We Study vs. What AI Disrupts",
+    date: "Feb 17, 2026",
     description:
       "An interactive analysis of 12 years of U.S. degree completion data (IPEDS 2012–2024) mapped against AI disruption forecasts from the BLS, Goldman Sachs, McKinsey, and frontier AI labs. Which fields are students flooding into — and how exposed are they to automation?",
     tools: ["React", "Recharts", "IPEDS", "BLS", "Goldman Sachs Research"],
@@ -28,6 +29,7 @@ const projects = [
     href: "#",
     tag: "Automation · Python",
     title: "Calendar Automation via Instagram + Claude Vision",
+    date: "Sept 2025",
     description:
       "A custom automation system that uses Claude's vision API to extract event data from Instagram posts and populate Google Calendar. Built to eliminate manual data entry for local community event coordination.",
     tools: ["Python", "Claude Vision API", "Google Calendar API", "Instagram"],
@@ -35,11 +37,12 @@ const projects = [
   },
   {
     href: "#",
-    tag: "Data Visualization · Tableau",
+    tag: "Data Storytelling · Long-form Report",
     title: "2024 State of Higher Education Report",
+    date: "Oct 2024",
     description:
-      "Led UX and data visualization for Indiana's 2024 State of Higher Education Report — the first aligned with the state's new strategic plan. Redesigned Tableau dashboards to improve navigation and make complex postsecondary data accessible to legislators and the public.",
-    tools: ["Tableau", "SQL Server", "Data Visualization", "Policy Communication"],
+      "Led UX and content design for Indiana's 2024 State of Higher Education Report — a 45-page long-form publication, the first aligned with the state's new strategic plan. Combined narrative, charts, and policy data into a cohesive document designed to communicate complex postsecondary trends to legislators and the public.",
+    tools: ["SQL Server", "Data Storytelling", "Policy Communication", "Long-form Design"],
     status: "Case Study",
   },
 ];
@@ -109,11 +112,22 @@ export default function ProjectsPage() {
                     fontSize: "clamp(22px, 2.5vw, 30px)",
                     fontWeight: 400,
                     lineHeight: 1.2,
-                    margin: "0 0 24px",
+                    margin: "0 0 10px",
                   }}
                 >
                   {p.title}
                 </h2>
+                <p
+                  style={{
+                    fontFamily: "var(--font-overpass-mono), monospace",
+                    fontSize: 10,
+                    color: "var(--ink-light)",
+                    letterSpacing: "0.08em",
+                    margin: "0 0 20px",
+                  }}
+                >
+                  {p.date}
+                </p>
                 <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                   {p.tools.map((t) => (
                     <span

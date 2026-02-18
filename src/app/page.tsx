@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ContactSection from "@/components/ContactSection";
 
 const wrap: React.CSSProperties = {
   maxWidth: 1060,
@@ -102,8 +103,7 @@ export default function Home() {
             maxWidth: 820,
           }}
         >
-          I turn complex data into<br />
-          <em>things people actually use.</em>
+          I build systems that turn data into <em>decisions.</em>
         </h1>
         <p
           style={{
@@ -473,67 +473,7 @@ export default function Home() {
       <div style={{ borderTop: "1px solid var(--border)" }} />
 
       {/* ═══ CONTACT ═══ */}
-      <section id="contact" style={{ ...wrap, padding: "80px 28px 120px" }}>
-        <p style={{ ...mono, marginBottom: 40 }}>Get in Touch</p>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
-          <div>
-            <h2
-              style={{
-                fontFamily: "var(--font-instrument-serif), Georgia, serif",
-                fontSize: "clamp(28px, 3vw, 42px)",
-                fontWeight: 400,
-                lineHeight: 1.2,
-                margin: "0 0 24px",
-              }}
-            >
-              Currently exploring new opportunities.
-            </h2>
-            <p
-              style={{
-                fontFamily: "var(--font-source-sans), sans-serif",
-                fontSize: 17,
-                lineHeight: 1.75,
-                color: "var(--ink-muted)",
-              }}
-            >
-              I'm looking for roles in data analysis, UX design, business analysis, and
-              systems automation where I can combine technical skills with human-centered
-              thinking. Indianapolis-based, open to remote.
-            </p>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, justifyContent: "center" }}>
-            <a
-              href="https://www.linkedin.com/in/alisonirl/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-overpass-mono), monospace",
-                fontSize: 12,
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "white",
-                background: "var(--accent)",
-                textDecoration: "none",
-                padding: "14px 24px",
-                borderRadius: 3,
-                display: "inline-block",
-              }}
-            >
-              Connect on LinkedIn →
-            </a>
-            <p
-              style={{
-                fontFamily: "var(--font-source-sans), sans-serif",
-                fontSize: 14,
-                color: "var(--ink-light)",
-              }}
-            >
-              Indianapolis, Indiana · Open to remote
-            </p>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
 
       {/* ═══ FOOTER ═══ */}
       <footer
@@ -558,7 +498,7 @@ export default function Home() {
               letterSpacing: "0.08em",
             }}
           >
-            © 2025 ALISON PARTEE
+            © {new Date().getFullYear()} ALISON PARTEE
           </span>
           <span
             style={{
