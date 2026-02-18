@@ -86,16 +86,68 @@ const changes = fields.map(f => ({
   pct: parseFloat(((f.vals[12] - f.vals[0]) / f.vals[0] * 100).toFixed(1)),
 })).sort((a, b) => b.pct - a.pct);
 
-// ─── BRIDGE: Degree fields → AI disruption exposure ──────────────
+// ─── BRIDGE: Degree fields → occupation pathways → AI exposure tiers ──────────
+// Occupational pathway data from BLS Occupational Outlook Handbook.
+// Exposure tiers (Higher / Moderate / Lower) are the author's synthesis of:
+//   - Goldman Sachs 2023 occupation-category task automation analysis
+//   - WEF Future of Jobs 2025 skills displacement data
+//   - Stanford HAI AI Index 2025 benchmark trajectories
+// These are RELATIVE TIERS, not precise percentages. No published source maps
+// AI exposure directly to degree fields; this mapping is the author's inference.
 const bridgeData = [
-  { field: "Computer Science", aiExposure: 78, pctChange: 134.3, color: T.accent },
-  { field: "Business", aiExposure: 62, pctChange: -0.3, color: T.caution },
-  { field: "English & Literature", aiExposure: 52, pctChange: -40.5, color: T.decline },
-  { field: "Social Sciences", aiExposure: 45, pctChange: -18.1, color: "#A0937B" },
-  { field: "Engineering", aiExposure: 41, pctChange: 38.3, color: T.cool },
-  { field: "Health Professions", aiExposure: 28, pctChange: 40.8, color: T.growth },
-  { field: "Education", aiExposure: 22, pctChange: -12.0, color: "#7B6FA0" },
+  {
+    field: "Computer Science",
+    occupations: "Software developers, data scientists, ML engineers",
+    tier: 3, tierLabel: "Higher",
+    tierNote: "Coding: SWE-bench score 4.4%→71.7% in 12 months (Stanford HAI 2025). CS grads also build and oversee these systems — a dual role with no clear precedent.",
+    pctChange: 134.3, color: T.accent,
+  },
+  {
+    field: "Business",
+    occupations: "Financial analysts, accountants, operations managers",
+    tier: 3, tierLabel: "Higher",
+    tierNote: "Business & financial operations are among the top-exposed occupation categories in Goldman Sachs 2023 task-level analysis of automation potential.",
+    pctChange: -0.3, color: T.caution,
+  },
+  {
+    field: "English & Literature",
+    occupations: "Writers, editors, content creators, journalists",
+    tier: 3, tierLabel: "Higher",
+    tierNote: "WEF 2025: writing and content creation rank among the fastest-displaced skill categories. Generative AI is most directly competitive in this domain.",
+    pctChange: -40.5, color: T.decline,
+  },
+  {
+    field: "Social Sciences",
+    occupations: "Policy analysts, researchers, social services workers",
+    tier: 2, tierLabel: "Moderate",
+    tierNote: "Research and analysis components are exposed; human-contact social work carries structural protection that automation cannot easily replicate.",
+    pctChange: -18.1, color: "#A0937B",
+  },
+  {
+    field: "Engineering",
+    occupations: "Civil, mechanical, electrical engineers",
+    tier: 2, tierLabel: "Moderate",
+    tierNote: "Physical-world design and site work provides partial shielding; cognitive analysis and documentation components face meaningful exposure.",
+    pctChange: 38.3, color: T.cool,
+  },
+  {
+    field: "Health Professions",
+    occupations: "Nurses, therapists, clinical practitioners",
+    tier: 1, tierLabel: "Lower",
+    tierNote: "Physical presence, licensed clinical judgment, and patient relationship requirements act as structural shields. Goldman 2023: healthcare among lowest-exposed occupation categories.",
+    pctChange: 40.8, color: T.growth,
+  },
+  {
+    field: "Education",
+    occupations: "Teachers, counselors, training specialists",
+    tier: 1, tierLabel: "Lower",
+    tierNote: "Adaptive human instruction and relationship-based work limit automation potential. Goldman 2023: education & training among lowest-exposed occupation categories.",
+    pctChange: -12.0, color: "#7B6FA0",
+  },
 ];
+
+const tierColors = { 3: T.accent, 2: T.caution, 1: T.growth };
+const tierDotsFn = (tier) => Array(3).fill(0).map((_, i) => i < tier ? "●" : "○").join(" ");
 
 // ─── FORECAST DATA ───────────────────────────────────────────────
 const forecasts = {
@@ -134,14 +186,14 @@ const forecasts = {
     pctAutomated: 60,
     color: T.aggressive,
     caps: [
-      { t: "Code generation", s: "Near-human", y: 2025 },
-      { t: "Legal research", s: "Superhuman in speed", y: 2025 },
-      { t: "Data analysis", s: "Near-human", y: 2025 },
-      { t: "Scientific reasoning", s: "Approaching human", y: 2025 },
-      { t: "Creative writing", s: "Competitive", y: 2025 },
-      { t: "Medical diagnosis", s: "Approaching specialist", y: 2026 },
-      { t: "Strategic planning", s: "Emerging", y: 2026 },
-      { t: "Physical labor", s: "Limited", y: 2028 },
+      { t: "Code generation", s: "Near-human", y: 2025, benchmark: "SWE-bench: 4.4%→71.7% solved in 12 months — Stanford HAI AI Index 2025" },
+      { t: "Legal research", s: "Superhuman in speed", y: 2025, benchmark: null },
+      { t: "Data analysis", s: "Near-human", y: 2025, benchmark: null },
+      { t: "Scientific reasoning", s: "Approaching human", y: 2025, benchmark: "GPQA: +48.9pp improvement 2023–24 — Stanford HAI AI Index 2025" },
+      { t: "Creative writing", s: "Competitive", y: 2025, benchmark: null },
+      { t: "Medical diagnosis", s: "Approaching specialist", y: 2026, benchmark: null },
+      { t: "Strategic planning", s: "Emerging", y: 2026, benchmark: null },
+      { t: "Physical labor", s: "Limited", y: 2028, benchmark: null },
     ],
   },
 };
@@ -434,61 +486,89 @@ export default function Dashboard() {
             fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400, lineHeight: 1.15,
             margin: "0 0 12px", maxWidth: 680, color: "#fff",
           }}>
-            The field that grew the most is also the most exposed
+            Where graduates land — and what published research says about those destinations
           </h2>
           <p style={{
             fontFamily: "'Source Sans 3', sans-serif", fontSize: 16, lineHeight: 1.65,
-            color: "rgba(255,255,255,0.55)", maxWidth: 580, margin: "0 0 32px",
+            color: "rgba(255,255,255,0.55)", maxWidth: 600, margin: "0 0 16px",
           }}>
-            Each row maps a degree field to the share of its typical career path
-            involving tasks where AI is now competitive. Sorted by exposure,
-            descending. Watch the enrollment column on the right.
+            Mapping each degree field to its primary occupation destinations, then to
+            what published AI research says about those occupations. Sorted by
+            exposure tier, descending. Enrollment change on the right.
           </p>
+
+          {/* Transparency banner */}
+          <div style={{
+            padding: "9px 14px", marginBottom: 24,
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.10)",
+            borderRadius: 5,
+            fontFamily: "'Overpass Mono', monospace", fontSize: 10,
+            color: "rgba(255,255,255,0.38)", lineHeight: 1.6,
+          }}>
+            AUTHOR SYNTHESIS — Tiers reflect relative, not absolute, risk. No published source maps AI exposure
+            directly to degree fields; this is the author's inference from occupation-level research.
+            Sources: Goldman Sachs 2023 task analysis, WEF Future of Jobs 2025, Stanford HAI AI Index 2025.
+          </div>
 
           {/* Column headers */}
           <div style={{
-            display: "grid", gridTemplateColumns: "140px 1fr 80px",
+            display: "grid", gridTemplateColumns: "185px 1fr 80px",
             gap: 12, padding: "0 0 8px",
             borderBottom: "1px solid rgba(255,255,255,0.12)",
-            marginBottom: 8,
+            marginBottom: 4,
           }}>
-            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Field</Mono>
-            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>AI-exposed tasks</Mono>
-            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "right" }}>Enrollment</Mono>
+            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Field & primary occupations</Mono>
+            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em" }}>Exposure tier + evidence</Mono>
+            <Mono size={9} color="rgba(255,255,255,0.35)" style={{ textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "right" }}>Enrollment ±</Mono>
           </div>
 
-          {/* Bars */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {/* Rows */}
+          <div style={{ display: "flex", flexDirection: "column" }}>
             {bridgeData.map((d, i) => (
               <div key={i} style={{
-                display: "grid", gridTemplateColumns: "140px 1fr 80px",
-                alignItems: "center", gap: 12, padding: "8px 0",
+                display: "grid", gridTemplateColumns: "185px 1fr 80px",
+                alignItems: "start", gap: 12, padding: "11px 0",
                 borderBottom: i < bridgeData.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
               }}>
-                <div style={{
-                  fontFamily: "'Source Sans 3', sans-serif", fontSize: 14,
-                  color: "rgba(255,255,255,0.8)", fontWeight: 500,
-                }}>{d.field}</div>
-                <div style={{ position: "relative", height: 22 }}>
+                {/* Field + occupations stacked */}
+                <div>
                   <div style={{
-                    position: "absolute", top: 0, left: 0, height: "100%",
-                    width: `${d.aiExposure}%`,
-                    background: `linear-gradient(90deg, ${d.color}bb, ${d.color}30)`,
-                    borderRadius: 3,
-                  }} />
+                    fontFamily: "'Source Sans 3', sans-serif", fontSize: 14,
+                    color: "rgba(255,255,255,0.85)", fontWeight: 500, lineHeight: 1.2,
+                  }}>{d.field}</div>
                   <div style={{
-                    position: "absolute", top: 0, left: 0, height: "100%",
-                    display: "flex", alignItems: "center", paddingLeft: 8,
-                    fontFamily: "'Overpass Mono', monospace", fontSize: 11,
-                    color: "#fff", fontWeight: 600,
-                  }}>
-                    {d.aiExposure}%
-                  </div>
+                    fontFamily: "'Source Sans 3', sans-serif", fontSize: 11,
+                    color: "rgba(255,255,255,0.32)", lineHeight: 1.4, marginTop: 3, fontStyle: "italic",
+                  }}>{d.occupations}</div>
                 </div>
+                {/* Tier dots + label + evidence note */}
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+                    <span style={{
+                      fontFamily: "'Overpass Mono', monospace", fontSize: 13, fontWeight: 700,
+                      color: tierColors[d.tier], letterSpacing: "0.1em",
+                    }}>
+                      {tierDotsFn(d.tier)}
+                    </span>
+                    <span style={{
+                      fontFamily: "'Overpass Mono', monospace", fontSize: 11, fontWeight: 600,
+                      color: tierColors[d.tier],
+                    }}>
+                      {d.tierLabel}
+                    </span>
+                  </div>
+                  <div style={{
+                    fontFamily: "'Source Sans 3', sans-serif", fontSize: 12,
+                    color: "rgba(255,255,255,0.35)", lineHeight: 1.5,
+                  }}>{d.tierNote}</div>
+                </div>
+                {/* Enrollment change */}
                 <div style={{
                   fontFamily: "'Overpass Mono', monospace", fontSize: 14,
                   fontWeight: 700, textAlign: "right",
                   color: d.pctChange > 10 ? T.growth : d.pctChange < -10 ? T.accent : "rgba(255,255,255,0.45)",
+                  paddingTop: 2,
                 }}>
                   {d.pctChange > 0 ? "+" : ""}{d.pctChange}%
                 </div>
@@ -507,16 +587,11 @@ export default function Dashboard() {
               fontFamily: "'Instrument Serif', serif", fontSize: 22, lineHeight: 1.4,
               color: "#fff", margin: 0, fontStyle: "italic",
             }}>
-              78% AI exposure. +134% enrollment growth. Students are flooding into
-              the discipline most likely to be transformed by the technology it creates.
+              CS sits in the higher exposure tier — and it's the only field that more than
+              doubled its graduates. Students are flooding into the discipline most directly
+              at AI's frontier, building the tools that are also reshaping their career paths.
             </p>
           </div>
-
-          <Mono color="rgba(255,255,255,0.25)" size={10} style={{ display: "block", marginTop: 20, lineHeight: 1.6 }}>
-            AI exposure synthesized from Goldman Sachs task-level analysis, Microsoft/OpenAI
-            occupational exposure research, WEF 2025 skills obsolescence data, and Brookings
-            Institution analysis. Field-level exposure is approximate and conveys relative, not absolute, risk.
-          </Mono>
         </div>
       </section>
 
@@ -665,15 +740,31 @@ export default function Dashboard() {
                 data, not a published forecast from a named institution. Sources are cited in
                 the methodology section below.
               </p>
+              <div style={{
+                fontFamily: "'Overpass Mono', monospace", fontSize: 10, color: T.inkLight,
+                letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: 6,
+              }}>
+                Author assessment — based on published benchmark trajectories &amp; AI lab statements
+              </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
                 {scenario.caps.map((c, i) => (
                   <div key={i} style={{
-                    display: "flex", alignItems: "center", gap: 12,
                     padding: "9px 14px", background: T.surfaceAlt, borderRadius: 5,
                   }}>
-                    <span style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, flex: 1 }}>{c.t}</span>
-                    <Mono bold size={11} color={T.accent} style={{ minWidth: 130, textAlign: "right" }}>{c.s}</Mono>
-                    <Mono size={11} color={T.inkLight} style={{ minWidth: 32 }}>{c.y}</Mono>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <span style={{ fontFamily: "'Source Sans 3', sans-serif", fontSize: 14, flex: 1 }}>{c.t}</span>
+                      <Mono bold size={11} color={T.accent} style={{ minWidth: 130, textAlign: "right" }}>{c.s}</Mono>
+                      <Mono size={11} color={T.inkLight} style={{ minWidth: 32 }}>{c.y}</Mono>
+                    </div>
+                    {c.benchmark && (
+                      <div style={{
+                        fontFamily: "'Overpass Mono', monospace", fontSize: 10,
+                        color: T.inkLight, marginTop: 4, lineHeight: 1.4,
+                        borderTop: `1px solid ${T.borderLight}`, paddingTop: 4,
+                      }}>
+                        {c.benchmark}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -772,13 +863,14 @@ export default function Dashboard() {
               The data tells a story about hedging. 119,000 graduates chose computer
               science in 2024, making the most rational bet available: if AI reshapes
               everything, the people closest to it should have the best chance of adapting.
-              But that bet carries a paradox. At 78% task exposure, no field is more
-              directly in AI's path. These graduates are not insulated from disruption.
-              They are at the center of it.
+              But that bet carries a paradox. Of all the fields tracked here, CS is the one
+              most directly engaged with AI — building the tools, setting their boundaries,
+              steering their deployment. These graduates are not insulated from disruption.
+              They are engineers of it.
             </p>
             <p style={{ margin: 0, color: T.ink }}>
-              Across every forecast -- from the BLS's gentle -1.4% to the AI lab
-              leadership synthesis's -38% peak disruption -- one finding is consistent: the dividing line
+              Across every forecast — from the BLS's gentle -1.4% to the AI lab leadership
+              synthesis's illustrative -38% peak — one pattern is consistent: the dividing line
               between who thrives and who is displaced is the capacity to learn faster
               than the tools improve. That is no longer a soft skill. It is the primary one.
             </p>
@@ -802,11 +894,14 @@ export default function Dashboard() {
             Earners report. 2023-24 estimated from IPEDS Fall 2024 provisional release and
             CRA Taulbee Survey enrollment trends. Estimated values noted throughout.
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>AI exposure:</strong> Synthesized from
-            Goldman Sachs task-level automation analysis (2023), Microsoft/OpenAI occupational
-            exposure research, WEF Future of Jobs 2025 skills obsolescence data, and Brookings
-            Institution AI exposure analysis. Field-level figures are approximate and convey
-            relative, not absolute, risk.
+            <strong style={{ color: T.inkMuted }}>AI exposure tiers:</strong> Occupational
+            pathway data from BLS Occupational Outlook Handbook. Exposure tiers (Higher /
+            Moderate / Lower) are the author's synthesis of Goldman Sachs "The Potentially
+            Large Effects of Artificial Intelligence on Economic Growth" (Briggs &amp; Kodnani,
+            2023) occupation-category task automation analysis; WEF Future of Jobs Report 2025
+            skills displacement data; and Stanford HAI AI Index 2025 benchmark trajectories.
+            No published source maps AI exposure directly to degree fields — this mapping
+            is the author's inference and conveys relative, not absolute, risk.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Forecasts:</strong> BLS Employment
             Projections 2023-2033. Goldman Sachs "Generative AI and the Future of Work"
