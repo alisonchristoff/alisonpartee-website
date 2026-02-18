@@ -1,65 +1,577 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const wrap: React.CSSProperties = {
+  maxWidth: 1060,
+  margin: "0 auto",
+  padding: "0 28px",
+};
+
+const mono: React.CSSProperties = {
+  fontFamily: "var(--font-overpass-mono), monospace",
+  fontSize: 11,
+  letterSpacing: "0.12em",
+  textTransform: "uppercase" as const,
+  color: "var(--ink-light)",
+};
+
+const projects = [
+  {
+    slug: "ai-displacement",
+    tag: "Data Investigation",
+    title: "What We Study vs. What AI Disrupts",
+    description:
+      "An interactive analysis of 12 years of U.S. degree completion data mapped against AI disruption forecasts from BLS, Goldman Sachs, McKinsey, and frontier AI labs. Which fields are students flooding into — and how exposed are they?",
+    tools: ["React", "Recharts", "IPEDS Data", "BLS", "Goldman Sachs"],
+    featured: true,
+  },
+  {
+    slug: "#",
+    tag: "Automation",
+    title: "Calendar Automation via Instagram + Claude Vision",
+    description:
+      "A custom automation system that uses Claude's vision API to extract event data from Instagram posts and populate Google Calendar — eliminating manual data entry for local community events.",
+    tools: ["Python", "Claude API", "Google Calendar API", "Instagram"],
+    featured: false,
+  },
+];
+
+const experience = [
+  {
+    company: "Automation Systems",
+    role: "Freelance",
+    period: "Apr 2025 – Present",
+    description:
+      "Design and build automated systems that simplify repetitive work through practical code and thoughtful workflows. Projects include a calendar automation system using Claude's vision API, data processing pipelines, and workflow automation solutions.",
+    tags: ["Python", "Claude API", "System Architecture", "API Integration"],
+  },
+  {
+    company: "Indiana Commission for Higher Education",
+    role: "Director of User Experience",
+    period: "Jan 2022 – Jun 2025",
+    description:
+      "Transformed how Indiana's higher education data reached stakeholders and the public by applying UX principles to complex information systems. Directed the 2024 State of Higher Education Report. Led UX redesign of Tableau dashboards and automated reporting systems.",
+    tags: ["UX Design", "Tableau", "SQL Server", "Power Automate", "Data Visualization"],
+  },
+  {
+    company: "Indiana Commission for Higher Education",
+    role: "Assistant Director of Data Analytics",
+    period: "Aug 2020 – Dec 2021",
+    description:
+      "Led data analytics initiatives for Indiana's statewide higher education system, translating complex data into actionable insights for legislative stakeholders.",
+    tags: ["Data Analytics", "SQL", "Reporting", "Stakeholder Communication"],
+  },
+  {
+    company: "Indiana Commission for Higher Education",
+    role: "Data Analyst",
+    period: "May 2018 – Aug 2020",
+    description:
+      "Analyzed higher education data and built reporting systems supporting policy decisions across Indiana's postsecondary institutions.",
+    tags: ["Data Analysis", "SQL", "Reporting"],
+  },
+  {
+    company: "Disease Ecology Laboratory, Indiana University",
+    role: "Systems Ecology Researcher",
+    period: "2016 – 2018",
+    description:
+      "Built ecological predictive models to understand behavioral patterns of disease spread in dynamic systems. Authored senior undergraduate thesis on predator-prey influences within disease systems using computational modeling.",
+    tags: ["Mathematical Modeling", "R", "Population Ecology"],
+  },
+];
+
+const skills = [
+  { category: "Design & UX", items: ["User Research", "Information Architecture", "Data Visualization", "Tableau", "Figma"] },
+  { category: "Automation & Systems", items: ["Microsoft Power Automate", "Azure DevOps", "Python", "API Integration", "Workflow Design"] },
+  { category: "Data & Analytics", items: ["SQL Server", "Data Analysis", "Statistical Modeling", "IPEDS", "Dashboard Design"] },
+  { category: "AI & Development", items: ["Claude API", "React", "Next.js", "Prompt Engineering", "Agentic Workflows"] },
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main style={{ background: "var(--bg)" }}>
+
+      {/* ═══ HERO ═══ */}
+      <section style={{ ...wrap, padding: "80px 28px 64px" }}>
+        <p style={{ ...mono, marginBottom: 24 }}>UX Designer · Systems Builder · Indianapolis, IN</p>
+        <h1
+          style={{
+            fontFamily: "var(--font-instrument-serif), Georgia, serif",
+            fontSize: "clamp(42px, 6vw, 72px)",
+            fontWeight: 400,
+            lineHeight: 1.06,
+            margin: "0 0 32px",
+            maxWidth: 820,
+          }}
+        >
+          I turn complex data into<br />
+          <em>things people actually use.</em>
+        </h1>
+        <p
+          style={{
+            fontFamily: "var(--font-source-sans), sans-serif",
+            fontSize: 20,
+            lineHeight: 1.65,
+            color: "var(--ink-muted)",
+            maxWidth: 600,
+            margin: "0 0 48px",
+          }}
+        >
+          7+ years at the intersection of data analytics and UX design. Former Director
+          of User Experience at the Indiana Commission for Higher Education. Now building
+          AI-powered automation systems and exploring what comes next.
+        </p>
+        <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <Link
+            href="/projects"
+            style={{
+              fontFamily: "var(--font-overpass-mono), monospace",
+              fontSize: 12,
+              fontWeight: 700,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "white",
+              background: "var(--accent)",
+              textDecoration: "none",
+              padding: "12px 24px",
+              borderRadius: 3,
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
+            View Projects
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#experience"
+            style={{
+              fontFamily: "var(--font-overpass-mono), monospace",
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--ink)",
+              textDecoration: "none",
+              padding: "12px 24px",
+              borderRadius: 3,
+              border: "1px solid var(--border)",
+            }}
           >
-            Documentation
+            Experience
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ─── DIVIDER ─── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ═══ FEATURED PROJECT ═══ */}
+      <section style={{ ...wrap, padding: "80px 28px" }}>
+        <p style={{ ...mono, marginBottom: 40 }}>Featured Work</p>
+
+        {projects.map((p) => (
+          <div
+            key={p.slug}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 48,
+              padding: "48px 0",
+              borderTop: "1px solid var(--border-light)",
+              alignItems: "start",
+            }}
+          >
+            <div>
+              <p style={{ ...mono, color: "var(--accent)", marginBottom: 16 }}>{p.tag}</p>
+              <h2
+                style={{
+                  fontFamily: "var(--font-instrument-serif), Georgia, serif",
+                  fontSize: "clamp(26px, 3vw, 36px)",
+                  fontWeight: 400,
+                  lineHeight: 1.2,
+                  margin: "0 0 20px",
+                }}
+              >
+                {p.title}
+              </h2>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 24 }}>
+                {p.tools.map((t) => (
+                  <span
+                    key={t}
+                    style={{
+                      fontFamily: "var(--font-overpass-mono), monospace",
+                      fontSize: 10,
+                      color: "var(--ink-light)",
+                      background: "var(--surface-alt)",
+                      padding: "4px 10px",
+                      borderRadius: 2,
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p
+                style={{
+                  fontFamily: "var(--font-source-sans), sans-serif",
+                  fontSize: 17,
+                  lineHeight: 1.7,
+                  color: "var(--ink-muted)",
+                  margin: "0 0 28px",
+                }}
+              >
+                {p.description}
+              </p>
+              {p.slug !== "#" && (
+                <Link
+                  href={`/projects/${p.slug}`}
+                  style={{
+                    fontFamily: "var(--font-overpass-mono), monospace",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    color: "var(--accent)",
+                    textDecoration: "none",
+                  }}
+                >
+                  View Interactive Dashboard →
+                </Link>
+              )}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* ─── DIVIDER ─── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ═══ ABOUT ═══ */}
+      <section style={{ ...wrap, padding: "80px 28px" }}>
+        <p style={{ ...mono, marginBottom: 40 }}>About</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+          <div>
+            <h2
+              style={{
+                fontFamily: "var(--font-instrument-serif), Georgia, serif",
+                fontSize: "clamp(28px, 3vw, 38px)",
+                fontWeight: 400,
+                lineHeight: 1.2,
+                margin: "0 0 24px",
+              }}
+            >
+              Making technology that serves people, not the other way around.
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-source-sans), sans-serif",
+                fontSize: 17,
+                lineHeight: 1.75,
+                color: "var(--ink-muted)",
+                margin: "0 0 20px",
+              }}
+            >
+              I've spent 7+ years turning complex data into actionable insights, and I
+              learned that the best analysis in the world means nothing if nobody can
+              understand or use it. That's why I focus on the intersection of data
+              analytics and user experience.
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-source-sans), sans-serif",
+                fontSize: 17,
+                lineHeight: 1.75,
+                color: "var(--ink-muted)",
+              }}
+            >
+              I believe in intentional design choices, thoughtful automation, and the
+              idea that the best systems are the ones people <em>want</em> to use.
+            </p>
+          </div>
+          <div>
+            <div style={{ marginBottom: 40 }}>
+              <p style={{ ...mono, marginBottom: 20 }}>Education</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-source-sans), sans-serif",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      margin: "0 0 4px",
+                    }}
+                  >
+                    Graduate Certificate, Human-Computer Interaction
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-overpass-mono), monospace",
+                      fontSize: 11,
+                      color: "var(--ink-light)",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Indiana University Indianapolis · 2021–2025
+                  </p>
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-source-sans), sans-serif",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      margin: "0 0 4px",
+                    }}
+                  >
+                    B.S. Mathematics
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-overpass-mono), monospace",
+                      fontSize: 11,
+                      color: "var(--ink-light)",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Indiana University Bloomington · 2014–2018
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <p style={{ ...mono, marginBottom: 20 }}>Skills</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                {skills.map((s) => (
+                  <div key={s.category}>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-overpass-mono), monospace",
+                        fontSize: 10,
+                        color: "var(--ink-light)",
+                        letterSpacing: "0.1em",
+                        textTransform: "uppercase",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {s.category}
+                    </p>
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                      {s.items.map((item) => (
+                        <span
+                          key={item}
+                          style={{
+                            fontFamily: "var(--font-source-sans), sans-serif",
+                            fontSize: 13,
+                            color: "var(--ink-muted)",
+                            background: "var(--surface-alt)",
+                            padding: "4px 10px",
+                            borderRadius: 2,
+                          }}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── DIVIDER ─── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ═══ EXPERIENCE ═══ */}
+      <section id="experience" style={{ ...wrap, padding: "80px 28px" }}>
+        <p style={{ ...mono, marginBottom: 40 }}>Experience</p>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {experience.map((e, i) => (
+            <div
+              key={i}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "200px 1fr",
+                gap: 40,
+                padding: "36px 0",
+                borderTop: "1px solid var(--border-light)",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-overpass-mono), monospace",
+                    fontSize: 10,
+                    color: "var(--ink-light)",
+                    letterSpacing: "0.06em",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {e.period}
+                </p>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-overpass-mono), monospace",
+                    fontSize: 10,
+                    color: "var(--accent)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    margin: "0 0 6px",
+                  }}
+                >
+                  {e.company}
+                </p>
+                <h3
+                  style={{
+                    fontFamily: "var(--font-source-sans), sans-serif",
+                    fontSize: 18,
+                    fontWeight: 600,
+                    margin: "0 0 12px",
+                  }}
+                >
+                  {e.role}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "var(--font-source-sans), sans-serif",
+                    fontSize: 15,
+                    lineHeight: 1.7,
+                    color: "var(--ink-muted)",
+                    margin: "0 0 16px",
+                  }}
+                >
+                  {e.description}
+                </p>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {e.tags.map((t) => (
+                    <span
+                      key={t}
+                      style={{
+                        fontFamily: "var(--font-overpass-mono), monospace",
+                        fontSize: 10,
+                        color: "var(--ink-light)",
+                        background: "var(--surface-alt)",
+                        padding: "3px 8px",
+                        borderRadius: 2,
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── DIVIDER ─── */}
+      <div style={{ borderTop: "1px solid var(--border)" }} />
+
+      {/* ═══ CONTACT ═══ */}
+      <section id="contact" style={{ ...wrap, padding: "80px 28px 120px" }}>
+        <p style={{ ...mono, marginBottom: 40 }}>Get in Touch</p>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+          <div>
+            <h2
+              style={{
+                fontFamily: "var(--font-instrument-serif), Georgia, serif",
+                fontSize: "clamp(28px, 3vw, 42px)",
+                fontWeight: 400,
+                lineHeight: 1.2,
+                margin: "0 0 24px",
+              }}
+            >
+              Currently exploring new opportunities.
+            </h2>
+            <p
+              style={{
+                fontFamily: "var(--font-source-sans), sans-serif",
+                fontSize: 17,
+                lineHeight: 1.75,
+                color: "var(--ink-muted)",
+              }}
+            >
+              I'm looking for roles in data analysis, UX design, business analysis, and
+              systems automation where I can combine technical skills with human-centered
+              thinking. Indianapolis-based, open to remote.
+            </p>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, justifyContent: "center" }}>
+            <a
+              href="https://www.linkedin.com/in/alisonirl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--font-overpass-mono), monospace",
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "white",
+                background: "var(--accent)",
+                textDecoration: "none",
+                padding: "14px 24px",
+                borderRadius: 3,
+                display: "inline-block",
+              }}
+            >
+              Connect on LinkedIn →
+            </a>
+            <p
+              style={{
+                fontFamily: "var(--font-source-sans), sans-serif",
+                fontSize: 14,
+                color: "var(--ink-light)",
+              }}
+            >
+              Indianapolis, Indiana · Open to remote
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ FOOTER ═══ */}
+      <footer
+        style={{
+          borderTop: "1px solid var(--border)",
+          padding: "24px 28px",
+        }}
+      >
+        <div
+          style={{
+            ...wrap,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-overpass-mono), monospace",
+              fontSize: 10,
+              color: "var(--ink-light)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            © 2025 ALISON PARTEE
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-overpass-mono), monospace",
+              fontSize: 10,
+              color: "var(--ink-light)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            INDIANAPOLIS, IN
+          </span>
+        </div>
+      </footer>
+    </main>
   );
 }
