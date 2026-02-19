@@ -16,6 +16,16 @@ const mono: React.CSSProperties = {
 
 const projects = [
   {
+    href: "/projects/friction-paradox",
+    tag: "Data Investigation · Interactive",
+    title: "The Friction Paradox",
+    date: "Feb 2026",
+    description:
+      "An interactive data dashboard exploring how removing friction from daily tasks created hidden costs: impulse spending, psychological detachment from money, loss of human interaction, and reduced sense of accomplishment. Every frictionless improvement is real — but optimization has side effects.",
+    tools: ["React", "Recharts", "Behavioral Economics", "Neuroscience Research"],
+    status: "Live",
+  },
+  {
     href: "/projects/ai-displacement",
     tag: "Data Investigation · Interactive",
     title: "What We Study vs. What AI Disrupts",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import ContactSection from "@/components/ContactSection";
 
 const wrap: React.CSSProperties = {
@@ -16,6 +17,15 @@ const mono: React.CSSProperties = {
 };
 
 const projects = [
+  {
+    slug: "friction-paradox",
+    tag: "Data Investigation",
+    title: "The Friction Paradox",
+    description:
+      "An interactive exploration of how removing friction from daily tasks created hidden costs: impulse spending, psychological detachment from money, loss of human interaction, and reduced sense of accomplishment.",
+    tools: ["React", "Recharts", "Behavioral Economics", "Neuroscience"],
+    featured: true,
+  },
   {
     slug: "ai-displacement",
     tag: "Data Investigation",
@@ -92,68 +102,85 @@ export default function Home() {
 
       {/* ═══ HERO ═══ */}
       <section style={{ ...wrap, padding: "80px 28px 64px" }}>
-        <p style={{ ...mono, marginBottom: 24 }}>UX Designer · Systems Builder · Indianapolis, IN</p>
-        <h1
-          style={{
-            fontFamily: "var(--font-instrument-serif), Georgia, serif",
-            fontSize: "clamp(42px, 6vw, 72px)",
-            fontWeight: 400,
-            lineHeight: 1.06,
-            margin: "0 0 32px",
-            maxWidth: 820,
-          }}
-        >
-          I build systems that turn data into <em>decisions.</em>
-        </h1>
-        <p
-          style={{
-            fontFamily: "var(--font-source-sans), sans-serif",
-            fontSize: 20,
-            lineHeight: 1.65,
-            color: "var(--ink-muted)",
-            maxWidth: 600,
-            margin: "0 0 48px",
-          }}
-        >
-          7+ years at the intersection of data analytics and UX design. Former Director
-          of User Experience at the Indiana Commission for Higher Education. Now building
-          AI-powered automation systems and exploring what comes next.
-        </p>
-        <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-          <Link
-            href="/projects"
-            style={{
-              fontFamily: "var(--font-overpass-mono), monospace",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "white",
-              background: "var(--accent)",
-              textDecoration: "none",
-              padding: "12px 24px",
-              borderRadius: 3,
-            }}
-          >
-            View Projects
-          </Link>
-          <a
-            href="#experience"
-            style={{
-              fontFamily: "var(--font-overpass-mono), monospace",
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "var(--ink)",
-              textDecoration: "none",
-              padding: "12px 24px",
-              borderRadius: 3,
-              border: "1px solid var(--border)",
-            }}
-          >
-            Experience
-          </a>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+          <div>
+            <p style={{ ...mono, marginBottom: 24 }}>UX Designer · Systems Builder · Indianapolis, IN</p>
+            <h1
+              style={{
+                fontFamily: "var(--font-instrument-serif), Georgia, serif",
+                fontSize: "clamp(42px, 6vw, 72px)",
+                fontWeight: 400,
+                lineHeight: 1.06,
+                margin: "0 0 32px",
+                maxWidth: 820,
+              }}
+            >
+              I build systems that turn data into <em>decisions.</em>
+            </h1>
+            <p
+              style={{
+                fontFamily: "var(--font-source-sans), sans-serif",
+                fontSize: 20,
+                lineHeight: 1.65,
+                color: "var(--ink-muted)",
+                maxWidth: 600,
+                margin: "0 0 48px",
+              }}
+            >
+              7+ years at the intersection of data analytics and UX design. Former Director
+              of User Experience at the Indiana Commission for Higher Education. Now building
+              AI-powered automation systems and exploring what comes next.
+            </p>
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <Link
+                href="/projects"
+                style={{
+                  fontFamily: "var(--font-overpass-mono), monospace",
+                  fontSize: 12,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "white",
+                  background: "var(--accent)",
+                  textDecoration: "none",
+                  padding: "12px 24px",
+                  borderRadius: 3,
+                }}
+              >
+                View Projects
+              </Link>
+              <a
+                href="#experience"
+                style={{
+                  fontFamily: "var(--font-overpass-mono), monospace",
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--ink)",
+                  textDecoration: "none",
+                  padding: "12px 24px",
+                  borderRadius: 3,
+                  border: "1px solid var(--border)",
+                }}
+              >
+                Experience
+              </a>
+            </div>
+          </div>
+          <div style={{ flexShrink: 0 }}>
+            <Image
+              src="/headshot.jpg"
+              alt="Alison Partee"
+              width={280}
+              height={280}
+              priority
+              style={{
+                borderRadius: 8,
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </div>
       </section>
 
