@@ -36,6 +36,16 @@ const projects = [
     status: "Live",
   },
   {
+    href: "/projects/loneliest-network",
+    tag: "Data Investigation · Interactive",
+    title: "The Loneliest Network",
+    date: "Feb 2026",
+    description:
+      "An interactive data dashboard exploring how technology systematically removed human-to-human interaction from daily life — and how each convenience we gained was also a connection we lost. From self-checkout to dating apps, the data reveals a paradox: we've never had more ways to connect, and we've never been more alone.",
+    tools: ["React", "Recharts", "ATUS", "Gallup", "Harvard MCC"],
+    status: "Live",
+  },
+  {
     href: "#",
     tag: "Automation · Python",
     title: "Calendar Automation via Instagram + Claude Vision",

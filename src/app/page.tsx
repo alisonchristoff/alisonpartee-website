@@ -36,6 +36,15 @@ const projects = [
     featured: true,
   },
   {
+    slug: "loneliest-network",
+    tag: "Data Investigation",
+    title: "The Loneliest Network",
+    description:
+      "An interactive exploration of how technology removed human interaction from daily life — and how each convenience we gained was also a connection we lost.",
+    tools: ["React", "Recharts", "ATUS", "Gallup", "Harvard MCC"],
+    featured: true,
+  },
+  {
     slug: "#",
     tag: "Automation",
     title: "Calendar Automation via Instagram + Claude Vision",
