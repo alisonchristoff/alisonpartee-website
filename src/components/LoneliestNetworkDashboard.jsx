@@ -106,11 +106,6 @@ const DivergingTooltip = ({ active, payload }) => {
 // ─── MAIN ────────────────────────────────────────────────────────
 export default function LoneliestNetworkDashboard() {
   const [vis, setVis] = useState(new Set(["hero"]));
-  const [lineToggles, setLineToggles] = useState({
-    smartphones: true,
-    friendTime: true,
-    loneliness: true,
-  });
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   useEffect(() => {
@@ -152,10 +147,6 @@ export default function LoneliestNetworkDashboard() {
 
   const wrap = { maxWidth: 1060, margin: "0 auto", padding: "0 28px" };
   const wideWrap = { maxWidth: 1200, margin: "0 auto", padding: "0 28px" };
-
-  const toggleLine = (key) => {
-    setLineToggles(prev => ({ ...prev, [key]: !prev[key] }));
-  };
 
   return (
     <div style={{ background: T.bg, minHeight: "100vh", color: T.ink }}>
@@ -201,58 +192,25 @@ export default function LoneliestNetworkDashboard() {
             fontSize: "clamp(22px, 2.5vw, 30px)", fontWeight: 400, lineHeight: 1.25,
             margin: "0 0 12px", textAlign: "center",
           }}>
-            Three lines across twenty years. The story is in what they do at the dashed line.
+            Twenty years of three trends that should have moved together &mdash; and didn&rsquo;t.
           </h2>
           <p style={{
             fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, lineHeight: 1.65,
             color: T.inkMuted, textAlign: "center", maxWidth: 540, margin: "0 auto 24px",
           }}>
-            <span style={{ color: T.cool, fontWeight: 600 }}>Blue</span> is smartphone adoption.{" "}
-            <span style={{ color: T.growth, fontWeight: 600 }}>Green</span> is hours per week spent with friends in person.{" "}
-            <span style={{ color: T.loneliness, fontWeight: 600 }}>Purple</span> is the percentage of people reporting loneliness.
+            <span style={{ color: T.cool, fontWeight: 600 }}>Blue</span>: smartphone ownership (left axis, %).{" "}
+            <span style={{ color: T.growth, fontWeight: 600 }}>Green</span>: weekly hours spent with friends in person (right axis, hrs/week).{" "}
+            <span style={{ color: T.loneliness, fontWeight: 600 }}>Purple</span>: % reporting loneliness (left axis).
             The dashed line marks 2013 &mdash; when smartphones crossed 50% ownership.
           </p>
-          {/* Toggle buttons */}
-          <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 20, flexWrap: "wrap" }}>
-            {[
-              { key: "smartphones", label: "Smartphone Ownership", color: T.cool },
-              { key: "friendTime", label: "In-Person Friend Time", color: T.growth },
-              { key: "loneliness", label: "Loneliness Prevalence", color: T.loneliness },
-            ].map(({ key, label, color }) => (
-              <button
-                key={key}
-                onClick={() => toggleLine(key)}
-                aria-label={`Toggle ${label}`}
-                aria-pressed={lineToggles[key]}
-                style={{
-                  fontFamily: "'Overpass Mono', monospace", fontSize: 10,
-                  letterSpacing: "0.04em",
-                  padding: "8px 16px", borderRadius: 20,
-                  border: `1px solid ${lineToggles[key] ? color : T.border}`,
-                  background: lineToggles[key] ? `${color}15` : T.surface,
-                  color: lineToggles[key] ? color : T.inkLight,
-                  cursor: "pointer",
-                  fontWeight: lineToggles[key] ? 700 : 400,
-                  transition: prefersReducedMotion ? "none" : "all 0.2s ease",
-                }}
-              >
-                <span style={{
-                  display: "inline-block", width: 8, height: 8, borderRadius: "50%",
-                  background: lineToggles[key] ? color : T.border,
-                  marginRight: 8, verticalAlign: "middle",
-                  transition: prefersReducedMotion ? "none" : "background 0.2s ease",
-                }} />
-                {label}
-              </button>
-            ))}
-          </div>
+
 
           <div style={{
             background: T.surface, border: `1px solid ${T.border}`,
             borderRadius: 12, padding: "28px 20px 16px",
           }}>
             <ResponsiveContainer width="100%" height={460}>
-              <LineChart data={divergingData} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
+              <LineChart data={divergingData} margin={{ top: 10, right: 55, left: 10, bottom: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke={T.borderLight} />
                 <XAxis
                   dataKey="year"
@@ -261,13 +219,27 @@ export default function LoneliestNetworkDashboard() {
                   axisLine={{ stroke: T.border }}
                 />
                 <YAxis
+                  yAxisId="pct"
                   tick={{ fontFamily: "'Overpass Mono', monospace", fontSize: 10, fill: T.inkLight }}
                   tickLine={{ stroke: T.border }}
                   axisLine={{ stroke: T.border }}
                   domain={[0, 100]}
+                  tickFormatter={v => `${v}%`}
+                  width={42}
+                />
+                <YAxis
+                  yAxisId="hrs"
+                  orientation="right"
+                  domain={[0, 8]}
+                  tickFormatter={v => `${v}h`}
+                  tick={{ fontFamily: "'Overpass Mono', monospace", fontSize: 10, fill: T.inkLight }}
+                  tickLine={{ stroke: T.border }}
+                  axisLine={{ stroke: T.border }}
+                  width={32}
                 />
                 <Tooltip content={<DivergingTooltip />} />
                 <ReferenceLine
+                  yAxisId="pct"
                   x={2013}
                   stroke={T.inkLight}
                   strokeDasharray="4 4"
@@ -277,27 +249,24 @@ export default function LoneliestNetworkDashboard() {
                     style: { fontFamily: "'Overpass Mono', monospace", fontSize: 9, fill: T.inkLight },
                   }}
                 />
-                {lineToggles.smartphones && (
-                  <Line
-                    type="monotone" dataKey="smartphones" stroke={T.cool}
-                    strokeWidth={2.5} dot={false}
-                    activeDot={{ r: 5, fill: T.cool, stroke: T.surface, strokeWidth: 2 }}
-                  />
-                )}
-                {lineToggles.friendTime && (
-                  <Line
-                    type="monotone" dataKey="friendTime" stroke={T.growth}
-                    strokeWidth={2.5} dot={false}
-                    activeDot={{ r: 5, fill: T.growth, stroke: T.surface, strokeWidth: 2 }}
-                  />
-                )}
-                {lineToggles.loneliness && (
-                  <Line
-                    type="monotone" dataKey="loneliness" stroke={T.loneliness}
-                    strokeWidth={2.5} dot={false}
-                    activeDot={{ r: 5, fill: T.loneliness, stroke: T.surface, strokeWidth: 2 }}
-                  />
-                )}
+                <Line
+                  yAxisId="pct"
+                  type="monotone" dataKey="smartphones" stroke={T.cool}
+                  strokeWidth={2.5} dot={false}
+                  activeDot={{ r: 5, fill: T.cool, stroke: T.surface, strokeWidth: 2 }}
+                />
+                <Line
+                  yAxisId="hrs"
+                  type="monotone" dataKey="friendTime" stroke={T.growth}
+                  strokeWidth={2.5} dot={false}
+                  activeDot={{ r: 5, fill: T.growth, stroke: T.surface, strokeWidth: 2 }}
+                />
+                <Line
+                  yAxisId="pct"
+                  type="monotone" dataKey="loneliness" stroke={T.loneliness}
+                  strokeWidth={2.5} dot={false}
+                  activeDot={{ r: 5, fill: T.loneliness, stroke: T.surface, strokeWidth: 2 }}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -312,17 +281,17 @@ export default function LoneliestNetworkDashboard() {
               fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, lineHeight: 1.65,
               color: T.ink, margin: 0,
             }}>
-              <strong>Follow the dashed line.</strong> In 2013, smartphones crossed 50% ownership.
-              That&rsquo;s when in-person friend time (green) begins its steepest drop &mdash; falling
-              from 5 hours/week to 3. Loneliness (purple) rises in near-mirror image.
-              Try toggling each line off to see the two that remain.
+              Smartphone ownership (blue) rose from 10% in 2005 to 90% by 2024. Over the same
+              period, weekly time spent with friends in person (green, right axis) fell from
+              6.5 hours to 3. Loneliness (purple) rose from 20% to 33%. The steepest drop in
+              friend time comes after 2013 &mdash; the year smartphones crossed 50% ownership.
             </p>
           </div>
 
           {/* Source notes */}
           <div style={{ marginTop: 10, textAlign: "center" }}>
             <Mono size={9} color={T.inkLight} style={{ lineHeight: 1.8 }}>
-              Smartphone data: Pew Research Center (2011&ndash;2024; pre-2011 estimated) &middot; Friend time: ATUS, BLS (hours/week, scaled for visual comparison) &middot; Loneliness: composite trend using &ldquo;lonely at least weekly&rdquo; framing (APA 2024); directional, not from a single instrument
+              Smartphone data: Pew Research Center (2011&ndash;2024; pre-2011 estimated) &middot; Friend time: ATUS, BLS (hours/week, right axis) &middot; Loneliness: composite trend using &ldquo;lonely at least weekly&rdquo; framing (APA 2024); directional, not from a single instrument
             </Mono>
           </div>
         </div>
