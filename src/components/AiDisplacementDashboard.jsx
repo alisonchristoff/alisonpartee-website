@@ -614,7 +614,7 @@ export default function Dashboard() {
           color: T.inkMuted, maxWidth: 600, margin: "0 0 28px",
         }}>
           This disagreement isn&rsquo;t statistical noise. The forecasts are built on incompatible
-          assumptions &mdash; about how fast organizations actually adopt AI, how capable AI
+          assumptions &mdash; about how fast organizations adopt AI, how capable AI
           becomes, and whether historical labor patterns still apply at all.
         </p>
 

@@ -679,8 +679,8 @@ export default function LoneliestNetworkDashboard() {
           color: T.ink, fontStyle: "italic", maxWidth: 600, margin: "48px 0 0",
         }}>
           The friction of in-person interaction &mdash; the awkwardness, the vulnerability, the
-          effort of showing up &mdash; was doing real work. Shared discomfort is part of what
-          makes bonds stick.
+          effort of showing up &mdash; carried structural weight. Shared discomfort is part of
+          what makes bonds stick.
         </p>
       </section>
 
@@ -697,7 +697,7 @@ export default function LoneliestNetworkDashboard() {
         }}>
           Some connections require friction. The effort of showing up, the discomfort of
           small talk, the inconvenience of being somewhere at a specific time &mdash; all of that
-          was doing something real. Bonds form in the effort, not <em style={{ color: T.ink }}>around</em> it.
+          was serving a function. Bonds form in the effort, not <em style={{ color: T.ink }}>around</em> it.
         </p>
         <p style={{
           fontFamily: "'Instrument Serif', serif",

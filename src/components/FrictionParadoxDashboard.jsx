@@ -829,15 +829,15 @@ export default function FrictionParadoxDashboard() {
           color: T.inkMuted, maxWidth: 620,
         }}>
           <p style={{ margin: "0 0 20px" }}>
-            The evidence points in two directions at once. Digital convenience genuinely improved
+            The evidence points in two directions at once. Digital convenience improved
             access and efficiency. But the friction it replaced was doing psychological and social
             work we hadn&rsquo;t accounted for &mdash; and that work didn&rsquo;t disappear when the friction did.
           </p>
           <p style={{ margin: "0 0 20px" }}>
-            Mobile deposits, one-click checkout, auto-pay, GPS &mdash; all of it is genuinely better
+            Mobile deposits, one-click checkout, auto-pay, GPS &mdash; all of it is better
             than what it replaced, and none of it was a mistake. The question is whether to design
             what comes next with some awareness of what friction was providing: a pause before the
-            purchase, a human moment where trust matters, a sense of having actually done something.
+            purchase, a human moment where trust matters, a sense of having done something.
           </p>
           <p style={{ margin: 0, color: T.ink }}>
             The challenge isn&rsquo;t rebuilding friction. It&rsquo;s preserving the functions it served &mdash;
