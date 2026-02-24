@@ -108,10 +108,34 @@ const skills = [
 export default function Home() {
   return (
     <main style={{ background: "var(--bg)" }}>
+      <style>{`
+        @media (max-width: 640px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .hero-image {
+            display: flex;
+            justify-content: center;
+          }
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .experience-row {
+            grid-template-columns: 1fr !important;
+            gap: 4px !important;
+          }
+        }
+      `}</style>
 
       {/* ═══ HERO ═══ */}
       <section style={{ ...wrap, padding: "80px 28px 64px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
+        <div className="hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 48, alignItems: "center" }}>
           <div>
             <p style={{ ...mono, marginBottom: 24 }}>UX Designer · Systems Builder · Indianapolis, IN</p>
             <h1
@@ -177,7 +201,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div style={{ flexShrink: 0 }}>
+          <div className="hero-image" style={{ flexShrink: 0 }}>
             <Image
               src="/headshot.jpg"
               alt="Alison Partee"
@@ -203,6 +227,7 @@ export default function Home() {
         {projects.map((p) => (
           <div
             key={p.slug}
+            className="projects-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -283,7 +308,7 @@ export default function Home() {
       {/* ═══ ABOUT ═══ */}
       <section style={{ ...wrap, padding: "80px 28px" }}>
         <p style={{ ...mono, marginBottom: 40 }}>About</p>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
+        <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80 }}>
           <div>
             <h2
               style={{
@@ -425,6 +450,7 @@ export default function Home() {
           {experience.map((e, i) => (
             <div
               key={i}
+              className="experience-row"
               style={{
                 display: "grid",
                 gridTemplateColumns: "200px 1fr",

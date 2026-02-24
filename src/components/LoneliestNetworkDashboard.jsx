@@ -210,7 +210,7 @@ export default function LoneliestNetworkDashboard() {
             <span style={{ color: T.cool, fontWeight: 600 }}>Blue</span> is smartphone adoption.{" "}
             <span style={{ color: T.growth, fontWeight: 600 }}>Green</span> is hours per week spent with friends in person.{" "}
             <span style={{ color: T.loneliness, fontWeight: 600 }}>Purple</span> is the percentage of people reporting loneliness.
-            The dashed line marks 2014 &mdash; when smartphones crossed 50% ownership.
+            The dashed line marks 2013 &mdash; when smartphones crossed 50% ownership.
           </p>
           {/* Toggle buttons */}
           <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 20, flexWrap: "wrap" }}>
@@ -268,11 +268,11 @@ export default function LoneliestNetworkDashboard() {
                 />
                 <Tooltip content={<DivergingTooltip />} />
                 <ReferenceLine
-                  x={2014}
+                  x={2013}
                   stroke={T.inkLight}
                   strokeDasharray="4 4"
                   label={{
-                    value: "Smartphone majority",
+                    value: "Smartphone majority (56%)",
                     position: "top",
                     style: { fontFamily: "'Overpass Mono', monospace", fontSize: 9, fill: T.inkLight },
                   }}
@@ -312,7 +312,7 @@ export default function LoneliestNetworkDashboard() {
               fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, lineHeight: 1.65,
               color: T.ink, margin: 0,
             }}>
-              <strong>Follow the dashed line.</strong> In 2014, smartphones crossed 50% ownership.
+              <strong>Follow the dashed line.</strong> In 2013, smartphones crossed 50% ownership.
               That&rsquo;s when in-person friend time (green) begins its steepest drop &mdash; falling
               from 5 hours/week to 3. Loneliness (purple) rises in near-mirror image.
               Try toggling each line off to see the two that remain.
@@ -322,7 +322,7 @@ export default function LoneliestNetworkDashboard() {
           {/* Source notes */}
           <div style={{ marginTop: 10, textAlign: "center" }}>
             <Mono size={9} color={T.inkLight} style={{ lineHeight: 1.8 }}>
-              Smartphone data: Pew Research Center &middot; Friend time: ATUS, BLS (hours/week, scaled for visual comparison) &middot; Loneliness: Cigna / Harvard / APA
+              Smartphone data: Pew Research Center (2011&ndash;2024; pre-2011 estimated) &middot; Friend time: ATUS, BLS (hours/week, scaled for visual comparison) &middot; Loneliness: composite trend using &ldquo;lonely at least weekly&rdquo; framing (APA 2024); directional, not from a single instrument
             </Mono>
           </div>
         </div>
@@ -457,7 +457,7 @@ export default function LoneliestNetworkDashboard() {
               color: T.inkMuted, lineHeight: 1.6, margin: 0,
             }}>
               Time with non-household family: <strong style={{ color: T.ink }}>35 min/day</strong> (2003)
-              &rarr; <strong style={{ color: T.ink }}>22 min/day</strong> (2020).
+              &rarr; <strong style={{ color: T.ink }}>28 min/day</strong> (2019, pre-pandemic).
             </p>
             <Mono size={9} color={T.inkLight} style={{ display: "block", marginTop: 6 }}>ATUS, BLS</Mono>
           </div>
@@ -500,7 +500,7 @@ export default function LoneliestNetworkDashboard() {
                 of young adults (18&ndash;25) report serious loneliness
               </p>
               <Mono size={9} color={T.inkLight} style={{ lineHeight: 1.6 }}>
-                Harvard Making Caring Common, 2021
+                Harvard Making Caring Common, 2021 (surveyed fall 2020, during the pandemic)
               </Mono>
             </div>
           </div>
@@ -545,7 +545,7 @@ export default function LoneliestNetworkDashboard() {
             }}>
               US adults feel lonely at least weekly.
             </p>
-            <Mono size={9} color={T.inkLight}>APA, 2024</Mono>
+            <Mono size={9} color={T.inkLight}>American Psychiatric Association, 2024</Mono>
           </div>
         </div>
 
@@ -565,7 +565,7 @@ export default function LoneliestNetworkDashboard() {
             }}>
               Fully remote workers report loneliness at a higher rate than on-site workers.
             </p>
-            <Mono size={9} color={T.inkLight}>Household Pulse Survey, 2024</Mono>
+            <Mono size={9} color={T.inkLight}>Gallup, State of the Global Workplace, 2024</Mono>
           </div>
         </div>
 
@@ -589,7 +589,7 @@ export default function LoneliestNetworkDashboard() {
             fontFamily: "'Source Sans 3', sans-serif", fontSize: 15,
             color: T.inkMuted, lineHeight: 1.6, margin: "20px 0 0", maxWidth: 560,
           }}>
-            Global social isolation prevalence rose <strong style={{ color: T.ink }}>13.4%</strong> over 16 years.
+            Global social isolation prevalence rose <strong style={{ color: T.ink }}>13.4%</strong> across 16 survey waves (2009&ndash;2024).
             The entire increase occurred after 2019.
             <br />
             <Mono size={9} color={T.inkLight}>JAMA Network Open, 2025</Mono>
@@ -635,7 +635,7 @@ export default function LoneliestNetworkDashboard() {
               <strong>51%</strong> of Americans have likely been in a parasocial relationship.
               Academic publications on the topic between 2016&ndash;2020 exceeded the prior 60 years combined.
             </p>
-            <Mono size={9} color={T.inkLight}>Thriveworks</Mono>
+            <Mono size={9} color={T.inkLight}>51%: Thriveworks &middot; Publication volume: Frontiers in Psychology, 2024</Mono>
           </div>
         </div>
 
@@ -673,10 +673,10 @@ export default function LoneliestNetworkDashboard() {
               fontFamily: "'Source Sans 3', sans-serif", fontSize: 16,
               color: T.ink, lineHeight: 1.65, margin: "0 0 6px",
             }}>
-              Americans text at <strong>5x</strong> the rate of phone calls (~32 texts/day vs ~6 calls).
+              Americans text at <strong>5x</strong> the rate of phone calls (~32 texts/day vs ~6 calls, as of 2015).
               90% of Gen Z check texts within 5 minutes &mdash; yet Gen Z reports the highest loneliness of any generation.
             </p>
-            <Mono size={9} color={T.inkLight}>SimpleTexting / Cigna U.S. Loneliness Index</Mono>
+            <Mono size={9} color={T.inkLight}>Texting rate: Informate Mobile Intelligence, 2015 &middot; Gen Z texting: SimpleTexting &middot; Loneliness: Cigna</Mono>
           </div>
         </div>
 
@@ -738,17 +738,21 @@ export default function LoneliestNetworkDashboard() {
             Men with zero close friends: 3% &rarr; 15%.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Smartphone ownership:</strong> Pew Research Center,
-            annual surveys 2005&ndash;2024.
+            2011&ndash;2024. Pre-2011 values are estimates (smartphones were niche before the iPhone in 2007;
+            Pew did not begin tracking until 2011).
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>Loneliness prevalence:</strong> Cigna U.S. Loneliness
-            Index (2018, 2020); Harvard Making Caring Common (2021, N=950 young adults);
-            APA (2024). Gen Z loneliest generation: Cigna.
+            <strong style={{ color: T.inkMuted }}>Loneliness prevalence (chart):</strong> The chart
+            uses a &ldquo;lonely at least weekly&rdquo; framing consistent with APA (2024, 30&ndash;33%).
+            This is a narrower measure than the UCLA Loneliness Scale used by Cigna (which reported
+            46% in 2018 and 61% in 2020). Year-over-year values are directional composites, not
+            from a single longitudinal instrument. Gen Z loneliest generation: Cigna.
+            Harvard Making Caring Common (2021, N=950 young adults) used for the 61% youth stat.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Global loneliness:</strong> Meta-Gallup State of
             Social Connections Report, 2023. 142 countries. 24% of global population.
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>Remote work loneliness:</strong> U.S. Census Bureau
-            Household Pulse Survey, 2024. 25% fully remote vs 16% on-site.
+            <strong style={{ color: T.inkMuted }}>Remote work loneliness:</strong> Gallup, State of
+            the Global Workplace Report, 2024. 25% fully remote vs 16% on-site.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Health impact:</strong> Holt-Lunstad, Smith &amp;
             Layton, &ldquo;Social Relationships and Mortality Risk,&rdquo; PLoS Medicine, 2010.
@@ -757,23 +761,28 @@ export default function LoneliestNetworkDashboard() {
             Endorsed by U.S. Surgeon General advisory, 2023.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Social isolation trend:</strong> JAMA Network Open,
-            2025. Global social isolation prevalence rose 13.4% over 16 years;
-            entire increase concentrated after 2019.
+            2025. Global social isolation prevalence rose 13.4% across 16 survey waves
+            (2009&ndash;2024, 159 countries); entire increase concentrated after 2019.
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>Parasocial relationships:</strong> Thriveworks, 2021.
-            51% of Americans have likely been in a parasocial relationship.
-            Academic publication volume: 2016&ndash;2020 exceeded the prior 60 years combined.
+            <strong style={{ color: T.inkMuted }}>Parasocial relationships:</strong> 51% prevalence:
+            Thriveworks, 2021. Academic publication volume (2016&ndash;2020 exceeded the prior
+            60 years combined): Frontiers in Psychology systematic review, 2024.
             <br/><br/>
             <strong style={{ color: T.inkMuted }}>Meeting partners:</strong> Stanford &ldquo;How Couples
             Meet and Stay Together&rdquo; study. Online surpassed friends as meeting venue in 2013.
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>Texting patterns:</strong> SimpleTexting survey data.
-            ~32 texts/day vs ~6 phone calls. 90% of Gen Z check texts within 5 minutes.
+            <strong style={{ color: T.inkMuted }}>Texting patterns:</strong> Texting rate (~32/day
+            vs ~6 calls): Informate Mobile Intelligence, 2015 (Android users).
+            90% of Gen Z check texts within 5 minutes: SimpleTexting survey.
             <br/><br/>
-            <strong style={{ color: T.inkMuted }}>Data limitations:</strong> Loneliness trend data is
-            compiled from multiple survey instruments with differing methodologies;
-            precise year-over-year comparisons should be treated as directional, not exact.
-            Friend time values are approximate based on published ATUS aggregations.
+            <strong style={{ color: T.inkMuted }}>Data limitations:</strong> The loneliness trend line
+            in the chart uses a &ldquo;lonely at least weekly&rdquo; framing (~20&ndash;33%) rather than
+            the UCLA Loneliness Scale used by Cigna (which reports higher prevalence: 46&ndash;61%).
+            Year-over-year values are directional composites from multiple instruments, not
+            from a single longitudinal study. Friend time values are approximate based on
+            published ATUS aggregations. Smartphone ownership before 2011 is estimated.
+            The 2013 crossover for meeting partners online applies to heterosexual couples
+            specifically (Stanford HCMST).
             <br/><br/>
             Built by Alison &middot; Feb 2026
           </div>
