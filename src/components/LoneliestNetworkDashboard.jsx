@@ -679,8 +679,8 @@ export default function LoneliestNetworkDashboard() {
           color: T.ink, fontStyle: "italic", maxWidth: 600, margin: "48px 0 0",
         }}>
           The friction of in-person interaction &mdash; the awkwardness, the vulnerability, the
-          effort of showing up &mdash; wasn&rsquo;t a bug. It was the mechanism through which
-          connection actually formed.
+          effort of showing up &mdash; was doing real work. Shared discomfort is part of what
+          makes bonds stick.
         </p>
       </section>
 
@@ -696,17 +696,16 @@ export default function LoneliestNetworkDashboard() {
           color: T.inkMuted, maxWidth: 520, margin: "0 auto 36px",
         }}>
           Some connections require friction. The effort of showing up, the discomfort of
-          small talk, the inconvenience of being somewhere at a specific time &mdash; that friction
-          wasn&rsquo;t in the way of connection. It was the mechanism through which
-          connection <em style={{ color: T.ink }}>formed</em>.
+          small talk, the inconvenience of being somewhere at a specific time &mdash; all of that
+          was doing something real. Bonds form in the effort, not <em style={{ color: T.ink }}>around</em> it.
         </p>
         <p style={{
           fontFamily: "'Instrument Serif', serif",
           fontSize: "clamp(22px, 3vw, 32px)", lineHeight: 1.35,
           color: T.ink, maxWidth: 560, margin: "0 auto", fontStyle: "italic",
         }}>
-          The apps that matter next won&rsquo;t compete on how efficiently they link people.
-          They&rsquo;ll compete on whether they give anyone a reason to show up somewhere in person.
+          The most interesting design problem of the next decade is giving people a reason
+          to be somewhere specific &mdash; together, in person, at the same time.
         </p>
       </section>
 
