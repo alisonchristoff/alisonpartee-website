@@ -840,8 +840,8 @@ export default function FrictionParadoxDashboard() {
             purchase, a human moment where trust matters, a sense of having done something.
           </p>
           <p style={{ margin: 0, color: T.ink }}>
-            The challenge isn&rsquo;t rebuilding friction. It&rsquo;s preserving the functions it served &mdash;
-            without requiring the inefficiency that came with it.
+            The more tractable goal is preserving what friction was doing &mdash; the pause, the
+            cost salience, the human moment &mdash; without requiring the inefficiency that came with it.
           </p>
         </div>
 
@@ -854,9 +854,8 @@ export default function FrictionParadoxDashboard() {
             fontFamily: "'Instrument Serif', serif", fontSize: 22, lineHeight: 1.4,
             color: T.ink, margin: 0, fontStyle: "italic",
           }}>
-            The interesting design question isn&rsquo;t speed. It&rsquo;s knowing which slowdowns
-            were doing something useful &mdash; and building the pause back in, deliberately,
-            where it matters.
+            Some slowdowns were serving a function. The harder part of optimization is figuring
+            out which ones &mdash; and designing the pause back in, deliberately, where it mattered.
           </p>
         </div>
       </section>
