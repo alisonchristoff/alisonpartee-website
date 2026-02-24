@@ -347,7 +347,7 @@ export default function Dashboard() {
           fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400, lineHeight: 1.15,
           margin: "0 0 12px", maxWidth: 700,
         }}>
-          Computer science doubled. English lost 40%. And then AI arrived.
+          Computer science more than doubled its graduates over twelve years; English shed 40% of its own over the same period. Then generative AI arrived and changed the stakes for both.
         </h2>
         <p style={{
           fontFamily: "'Source Sans 3', sans-serif", fontSize: 16, lineHeight: 1.65,
@@ -607,15 +607,15 @@ export default function Dashboard() {
           fontSize: "clamp(26px, 3.5vw, 40px)", fontWeight: 400, lineHeight: 1.15,
           margin: "0 0 12px", maxWidth: 700,
         }}>
-          Three institutions, three timelines, zero agreement
+          The forecasts don&rsquo;t agree &mdash; not on scale, not on timeline
         </h2>
         <p style={{
           fontFamily: "'Source Sans 3', sans-serif", fontSize: 16, lineHeight: 1.65,
           color: T.inkMuted, maxWidth: 600, margin: "0 0 28px",
         }}>
-          The gap between these forecasts is not a margin of error. It reflects
-          fundamentally different assumptions about how fast organizations adopt AI,
-          how capable AI becomes, and whether historical patterns still apply.
+          This disagreement isn&rsquo;t statistical noise. The forecasts are built on incompatible
+          assumptions &mdash; about how fast organizations actually adopt AI, how capable AI
+          becomes, and whether historical labor patterns still apply at all.
         </p>
 
         {/* Scenario cards */}
@@ -863,16 +863,17 @@ export default function Dashboard() {
               The data tells a story about hedging. 119,000 graduates chose computer
               science in 2024, making the most rational bet available: if AI reshapes
               everything, the people closest to it should have the best chance of adapting.
-              But that bet carries a paradox. Of all the fields tracked here, CS is the one
-              most directly engaged with AI — building the tools, setting their boundaries,
-              steering their deployment. These graduates are not insulated from disruption.
-              They are engineers of it.
+              But that bet has a wrinkle. Of all the fields tracked here, CS is the one
+              most directly engaged with AI — building the tools, setting their parameters,
+              working at the frontier. These graduates aren&rsquo;t bystanders to disruption.
+              They helped build it.
             </p>
             <p style={{ margin: 0, color: T.ink }}>
               Across every forecast — from the BLS's gentle -1.4% to the AI lab leadership
               synthesis's illustrative -38% peak — one pattern is consistent: the dividing line
               between who thrives and who is displaced is the capacity to learn faster
-              than the tools improve. That is no longer a soft skill. It is the primary one.
+              than the tools improve. That used to be called adaptability. Right now it&rsquo;s
+              the only credential with a stable job description.
             </p>
           </div>
         </div>

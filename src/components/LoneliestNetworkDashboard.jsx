@@ -201,7 +201,7 @@ export default function LoneliestNetworkDashboard() {
             fontSize: "clamp(22px, 2.5vw, 30px)", fontWeight: 400, lineHeight: 1.25,
             margin: "0 0 12px", textAlign: "center",
           }}>
-            Three measures. Twenty years. Watch what happens at the dashed line.
+            Three lines across twenty years. The story is in what they do at the dashed line.
           </h2>
           <p style={{
             fontFamily: "'Source Sans 3', sans-serif", fontSize: 15, lineHeight: 1.65,
@@ -334,19 +334,13 @@ export default function LoneliestNetworkDashboard() {
       <section data-a="bridge" style={{ ...wrap, padding: "56px 28px 40px", ...anim("bridge") }}>
         <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
           <p style={{
-            fontFamily: "'Source Sans 3', sans-serif", fontSize: 18, lineHeight: 1.75,
-            color: T.inkMuted, margin: "0 0 20px",
-          }}>
-            Three lines. Two decades. One pattern.
-          </p>
-          <p style={{
             fontFamily: "'Source Sans 3', sans-serif", fontSize: 17, lineHeight: 1.75,
             color: T.inkMuted, margin: 0,
           }}>
-            As connection tools multiplied, the time we spend with the people
-            physically around us collapsed. The loneliness that followed wasn&rsquo;t
-            a coincidence &mdash; it was a consequence. Below is where it happened,
-            who it hit, and where the connection went.
+            As connection tools multiplied, the time we spent with people physically
+            around us collapsed. The loneliness that followed tracks the shift too closely
+            to be incidental. Below is where it happened, who it hit, and where the
+            connection went.
           </p>
         </div>
       </section>
@@ -615,7 +609,7 @@ export default function LoneliestNetworkDashboard() {
           fontFamily: "'Source Sans 3', sans-serif", fontSize: 17, lineHeight: 1.65,
           color: T.inkMuted, maxWidth: 560, margin: "0 0 48px",
         }}>
-          The need didn&rsquo;t disappear. It was rerouted through screens.
+          The need went somewhere &mdash; into apps, feeds, and text threads, mostly.
         </p>
 
         {/* Evidence rows */}
@@ -702,16 +696,17 @@ export default function LoneliestNetworkDashboard() {
           color: T.inkMuted, maxWidth: 520, margin: "0 auto 36px",
         }}>
           Some connections require friction. The effort of showing up, the discomfort of
-          small talk, the inconvenience of being somewhere at a specific time &mdash; these
-          weren&rsquo;t obstacles to connection. They <em style={{ color: T.ink }}>were</em> connection.
+          small talk, the inconvenience of being somewhere at a specific time &mdash; that friction
+          wasn&rsquo;t in the way of connection. It was the mechanism through which
+          connection <em style={{ color: T.ink }}>formed</em>.
         </p>
         <p style={{
           fontFamily: "'Instrument Serif', serif",
           fontSize: "clamp(22px, 3vw, 32px)", lineHeight: 1.35,
           color: T.ink, maxWidth: 560, margin: "0 auto", fontStyle: "italic",
         }}>
-          The best-designed systems of the next decade won&rsquo;t just connect people faster.
-          They&rsquo;ll create reasons for people to be in the same room.
+          The apps that matter next won&rsquo;t compete on how efficiently they link people.
+          They&rsquo;ll compete on whether they give anyone a reason to show up somewhere in person.
         </p>
       </section>
 

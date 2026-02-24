@@ -528,8 +528,9 @@ export default function FrictionParadoxDashboard() {
               fontFamily: "'Instrument Serif', serif", fontSize: 22, lineHeight: 1.4,
               color: "#fff", margin: 0, fontStyle: "italic",
             }}>
-              The pain of paying wasn&rsquo;t a bug. It was a feature. We optimized it away
-              without asking what it was protecting.
+              The pain of paying was doing something. Neuroscience calls it cost salience &mdash;
+              a real-time brake on purchases you might regret. We removed it as an obstacle.
+              Nobody asked what it was protecting.
             </p>
           </div>
         </div>
@@ -553,7 +554,7 @@ export default function FrictionParadoxDashboard() {
           fontFamily: "'Source Sans 3', sans-serif", fontSize: 16, lineHeight: 1.65,
           color: T.inkMuted, maxWidth: 620, margin: "0 0 8px",
         }}>
-          We prefer digital for transactions. We need human for trust.
+          People chose digital for the transaction. The branch stays because it means something harder to replace.
         </p>
 
         <div style={{
@@ -830,19 +831,17 @@ export default function FrictionParadoxDashboard() {
           <p style={{ margin: "0 0 20px" }}>
             The evidence points in two directions at once. Digital convenience genuinely improved
             access and efficiency. But the friction it replaced was doing psychological and social
-            work we hadn&rsquo;t accounted for. These are competing goods, not a simple tradeoff.
+            work we hadn&rsquo;t accounted for &mdash; and that work didn&rsquo;t disappear when the friction did.
           </p>
           <p style={{ margin: "0 0 20px" }}>
-            Mobile deposits save time. One-click checkout reduces abandoned carts. Auto-pay
-            prevents late fees. GPS eliminated the stress of being lost. None of this was a
-            mistake. The question isn&rsquo;t whether to reverse these changes — it&rsquo;s whether to design
-            the next generation of tools with awareness of what friction provided: a pause before
-            purchase, a human option for trust, a sense of earned completion.
+            Mobile deposits, one-click checkout, auto-pay, GPS &mdash; all of it is genuinely better
+            than what it replaced, and none of it was a mistake. The question is whether to design
+            what comes next with some awareness of what friction was providing: a pause before the
+            purchase, a human moment where trust matters, a sense of having actually done something.
           </p>
           <p style={{ margin: 0, color: T.ink }}>
-            The design challenge is not to re-introduce inefficiency. It&rsquo;s to preserve
-            friction&rsquo;s benefits — the brake, the human moment, the accomplishment — without
-            requiring the cost that friction originally imposed.
+            The challenge isn&rsquo;t rebuilding friction. It&rsquo;s preserving the functions it served &mdash;
+            without requiring the inefficiency that came with it.
           </p>
         </div>
 
@@ -855,8 +854,9 @@ export default function FrictionParadoxDashboard() {
             fontFamily: "'Instrument Serif', serif", fontSize: 22, lineHeight: 1.4,
             color: T.ink, margin: 0, fontStyle: "italic",
           }}>
-            The best-designed systems of the next decade won&rsquo;t be the fastest.
-            They&rsquo;ll be the ones that know when to slow down.
+            The interesting design question isn&rsquo;t speed. It&rsquo;s knowing which slowdowns
+            were doing something useful &mdash; and building the pause back in, deliberately,
+            where it matters.
           </p>
         </div>
       </section>
