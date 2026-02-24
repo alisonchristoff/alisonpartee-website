@@ -29,7 +29,7 @@ const projects = [
     href: "/projects/ai-displacement",
     tag: "Data Investigation · Interactive",
     title: "What We Study vs. What AI Disrupts",
-    date: "Feb 17, 2026",
+    date: "Feb 2026",
     description:
       "An interactive analysis of 12 years of U.S. degree completion data (IPEDS 2012–2024) mapped against AI disruption forecasts from the BLS, Goldman Sachs, McKinsey, and frontier AI labs. Which fields are students flooding into — and how exposed are they to automation?",
     tools: ["React", "Recharts", "IPEDS", "BLS", "Goldman Sachs Research"],
